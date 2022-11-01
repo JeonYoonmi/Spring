@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>JSPBook</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 오류가 나면 오류 타입에 맞춰 오류 처리 jsp로 매핑 -->
+  <!--  404 : page not found. URL에 해당하는 jsp가 없음 -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error/error404.jsp</location>
+  </error-page>
+  
+  <!-- 프로그래밍 오류 -->
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/error/error500.jsp</location>
+  </error-page>
+  
+  <!-- exception 타입별 오류 페이지 지정 -->
+  <error-page>
+  	<exception-type>java.lang.NullPointerException</exception-type>
+  	<location>/error/errorNullPointer.jsp</location>
+  </error-page>
+  
+  <!-- - 시큐리티 - -->
+  <security-role>
+<!--   	<role-name>role1</role-name> -->
+  	<role-name>admin</role-name>
+  </security-role>
+  
+  <security-constraint>
+	  <display-name>JYM Market Security</display-name>
+	  
+	  	<!-- 웹 자원에 대한 약속 목록 -->
+	  	<web-resource-collection>
+	  		<!-- 프로젝트 명 -->
+	  		<web-resource-name>JSPBook</web-resource-name>
+	  		<!-- 접근 제한을 할 대상 - 어떤 페이지를 로그인 하게 만들건지 -->
+	  		<!-- /ch10/* => ch10폴더 하위의 모든 jsp페이지 접근 시 접근제한 -->
+	<!--   		<url-pattern>/ch10/security01.jsp</url-pattern> -->
+	<!--   		<url-pattern>/ch10/security02.jsp</url-pattern> -->
+	  		<url-pattern>/addProduct.jsp</url-pattern>
+	  		<!-- GET방식으로 접근시 제한 -->
+	  		<http-method>GET</http-method>
+	  	</web-resource-collection>
+	  	
+	  	<auth-constraint>
+	  		<description></description>
+	  		<!-- role1이라는 권한을 가진 role1, both 사용자의 경우
+	  			아이디와 비밀번호가 맞게 입력되었다면 security01.jsp로 접근 가능 -->
+	<!--   		<role-name>role1</role-name> -->
+	  		<role-name>admin</role-name>
+	  	</auth-constraint>
+  </security-constraint>
+  
+  <!-- 그러면 로그인 페이지는? -->
+  <login-config>
+  	<!-- 로그인 페이지는 기본으로 제공됨 -->
+<!--   	<auth-method>BASIC</auth-method> -->
+	<auth-method>FORM</auth-method>
+	
+	<!-- FORM 인증 처리 기법 설정 -->
+	<form-login-config>
+		<!-- 로그인 페이지는? -->
+<!-- 		<form-login-page>/ch10/login.jsp</form-login-page> -->
+		<form-login-page>/login.jsp</form-login-page>
+		<!-- 로그인 실페시 보여줄 페이지는? -->
+<!-- 		<form-error-page>/ch10/login_failed.jsp</form-error-page> -->
+		<form-error-page>/login_failed.jsp</form-error-page>
+	</form-login-config>
+  </login-config>
+  
+  <filter>
+  	<!-- filter와 filter-mapping의 연결고리는 filter-name -->
+  	<filter-name>LogFilter</filter-name>
+  	<!-- src > filter > LogFilter.java -->
+  	<filter-class>filter.LogFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>LogFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+  	<filter-name>LogFileFilter</filter-name>
+  	<!-- src > filter > LogFileFilter.java -->
+  	<filter-class>filter.LogFileFilter</filter-class>
+  	<!-- 로그가 저장될 파일의 위치 지정. LogFileFilter의 init()메소드에 파라미터를 보냄 -->
+  	<init-param>
+  		<param-name>filename</param-name>
+  		<param-value>c:\\logs\\webmarket.log</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>LogFileFilter</filter-name>
+  	<!-- http://localhost/의 모든 하위 폴더 밑 모든 url요청 시 작동 -->
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+</web-app>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

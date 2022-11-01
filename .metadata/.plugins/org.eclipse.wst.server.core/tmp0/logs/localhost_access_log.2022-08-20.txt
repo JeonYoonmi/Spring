@@ -1,0 +1,17 @@
+127.0.0.1 - - [20/Aug/2022:15:27:48 +0900] "GET / HTTP/1.1" 404 1074
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:54 +0900] "GET /resources/sbadmin2/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 404 1152
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:54 +0900] "GET /resources/sbadmin2/css/sb-admin-2.min.css HTTP/1.1" 404 1127
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:54 +0900] "GET /resources/sbadmin2/img/undraw_rocket.svg HTTP/1.1" 404 1126
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:55 +0900] "GET /ddit/ HTTP/1.1" 404 20069
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:55 +0900] "GET /resources/sbadmin2/img/undraw_profile_2.svg HTTP/1.1" 404 1129
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:55 +0900] "GET /resources/sbadmin2/img/undraw_profile_3.svg HTTP/1.1" 404 1129
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:55 +0900] "GET /resources/sbadmin2/img/undraw_profile_1.svg HTTP/1.1" 404 1129
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:55 +0900] "GET /resources/sbadmin2/vendor/jquery/jquery.min.js HTTP/1.1" 404 1136
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:55 +0900] "GET /resources/sbadmin2/img/undraw_profile_1.svg HTTP/1.1" 404 1129
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:55 +0900] "GET /resources/sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1" 404 1156
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:55 +0900] "GET /resources/sbadmin2/vendor/jquery-easing/jquery.easing.min.js HTTP/1.1" 404 1150
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:55 +0900] "GET /resources/sbadmin2/vendor/chart.js/Chart.min.js HTTP/1.1" 404 1137
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:55 +0900] "GET /resources/sbadmin2/js/sb-admin-2.min.js HTTP/1.1" 404 1125
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:55 +0900] "GET /resources/sbadmin2/js/demo/chart-pie-demo.js HTTP/1.1" 404 1134
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:55 +0900] "GET /resources/sbadmin2/js/demo/chart-area-demo.js HTTP/1.1" 404 1135
+0:0:0:0:0:0:0:1 - - [20/Aug/2022:15:27:56 +0900] "GET /favicon.ico HTTP/1.1" 404 1085

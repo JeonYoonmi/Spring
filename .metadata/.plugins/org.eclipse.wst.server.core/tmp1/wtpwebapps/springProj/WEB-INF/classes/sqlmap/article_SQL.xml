@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	Mapper 인터페이스를 namespace에 설정해준다.
+-->
+<mapper namespace="kr.or.ddit.mapper.ArticleMapper">
+	<!-- 글 입력 -->
+	<insert id="insert" parameterType="articleVO">
+		<selectKey order="BEFORE" resultType="int" keyProperty="articleNo">
+			SELECT NVL(MAX(ARTICLE_NO), 0) + 1 FROM ARTICLE
+		</selectKey>
+		INSERT INTO ARTICLE(ARTICLE_NO, WRITER_ID,WRITER_NAME,TITLE,
+   		ART_CONTENT,REGDATE,MODDATE,READ_CNT)
+		VALUES(#{articleNo}, #{writerId}, #{writerName}, #{title},
+		 #{artContent}, SYSDATE, NULL, 0)
+	</insert>
+	<!-- 
+		글 목록 
+		- 파라미터 타입 : hashMap => map : {show=10, name=전체, keyword=개똥이}
+		- 리턴 타입 : articleVO
+	-->
+	<select id="list" parameterType="hashMap" resultType="articleVO">
+		SELECT ARTICLE_NO, WRITER_ID, WRITER_NAME, TITLE,
+	    ART_CONTENT, REGDATE, MODDATE, READ_CNT
+		FROM ARTICLE
+		WHERE 1 = 1
+		<if test="cond != null and !cond.equals('')">
+			<choose>
+				<when test="cond == 'title'">
+					AND TITLE LIKE '%' || #{keyword} || '%'
+				</when>
+				<when test="cond == 'artContent'">
+					AND ART_CONTENT LIKE '%' || #{keyword} || '%'
+				</when>
+				<when test="cond == 'writerName'">
+					AND WRITER_NAME LIKE '%' || #{keyword} || '%'
+				</when>
+			</choose>
+		</if>
+		<if test="cond == null or cond.equals('')">
+			AND (
+				TITLE LIKE '%' || #{keyword} || '%' OR
+				ART_CONTENT LIKE '%' || #{keyword} || '%' OR
+				WRITER_NAME LIKE '%' || #{keyword} || '%'
+				)
+		</if>
+		ORDER BY 1 DESC
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
